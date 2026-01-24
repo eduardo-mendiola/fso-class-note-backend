@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 
 let notes = [
   {
@@ -27,9 +28,10 @@ const requestLogger = (request, response, next) => {
   next()
 }
 
-app.use(express.json())
 app.use(requestLogger)
 app.use(cors())
+app.use(express.json())
+app.use(express.static(path.join(__dirname, 'dist')))
 
 const generateId = () => {
   const maxId = notes.length > 0
@@ -39,9 +41,9 @@ const generateId = () => {
 }
 
 
-app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
-})
+// app.get('/', (request, response) => {
+//   response.send('<h1>Hello World!</h1>')
+// })
 
 app.get('/api/notes', (request, response) => {
   response.json(notes)
