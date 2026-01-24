@@ -1,0 +1,29 @@
+# Global variables (use {{variableName}} anywhere in the file)
+@baseUrl = http://localhost:3001
+
+### 1. GET - List all users (Read - All)
+GET {{baseUrl}}/api/notes
+Accept: application/application/json
+
+### GET - Get a single note by ID (Read - One)
+GET {{baseUrl}}/api/notes/1
+Accept: application/json
+
+### POST - Create a new note (Create)
+POST {{baseUrl}}/api/notes
+Content-Type: application/json
+
+{
+  "content": "My important note",
+  "important": true
+}
+
+### PUT - Update a note completely (Update - Full)
+PUT {{baseUrl}}/api/notes/1
+Content-Type: application/json
+
+{
+  "content": "Update note content",
+  "important": false
+}
+
